@@ -11,6 +11,7 @@ This architecture is designed to ensure secure and private communication between
 •	All communication between EC2 and S3 happens through the AWS internal network.
 ________________________________________
 📊 Architecture Diagram :
+
 ![Architecture Diagram](screenshots/Architecture.png)
 ________________________________________
 ⚙️ Components Used :
@@ -24,22 +25,30 @@ ________________________________________
 ________________________________________
 🔧 Step-by-Step Implementation :
 1.	Created a custom VPC
+
 ![VPC](screenshots/VPC-architecture.png)
 2.	Created a private subnet inside the VPC
 3.	Configured route table for private subnet (no internet route)
 4.	Launched EC2 instance in private subnet (no public IP)
+
 ![EC2 Instance](screenshots/PrivateServer-Instance.png)
 5.	Created an IAM role with S3 ReadOnly permissions
 6.	Attached IAM role to EC2 instance
+
 ![IAM Role](screenshots/EC2-IAM-Role.png)
 7.	Created an S3 bucket and uploaded sample files
+
 ![S3-Buckets](screenshots/S3-Buckets.png)
+
 ![Endpoint](screenshots/PrivateServer-S3error.png)
 8.	Created a VPC Gateway Endpoint for S3
+
 ![Endpoint](screenshots/VPC-endpoint.png)
 9.	Associated the endpoint with the route table
+
 ![Endpoint](screenshots/RouteTableAttachedtoEndpoint.png)
 10.	Connected to EC2 and accessed S3 using PuTTY over SSH
+
 ![Endpoint](screenshots/PrivateServer-S3success.png)
 ________________________________________
 🔐 Security Considerations :
